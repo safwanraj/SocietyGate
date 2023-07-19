@@ -1,0 +1,66 @@
+﻿@model IEnumerable<GateCommunityMvc.Models.Entryexit>
+
+@{
+    ViewData["Title"] = "Visitorlist";
+    Layout = "~/Views/Guard/_Layout.cshtml";
+}
+
+<h1>Visitorlist</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Tblresident)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Visitors)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.society)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Entry)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Exit)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ApplicationUser)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tblresident.residentId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Visitors.visitorId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.society.Society_Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Entry)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Exit)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApplicationUser.Id)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.eid">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.eid">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.eid">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

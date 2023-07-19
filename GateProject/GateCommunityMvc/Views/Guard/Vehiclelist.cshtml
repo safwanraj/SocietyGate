@@ -1,0 +1,73 @@
+﻿@model IEnumerable<GateCommunityMvc.Models.Vehicle>
+
+@{
+    ViewData["Title"] = "Vehiclelist";
+    Layout = "~/Views/Guard/_Layout.cshtml";
+}
+
+<h1>Vehiclelist</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table id="vehiclelist" class="table table-striped table-bordered">
+    
+    <thead>
+        <tr>
+            <th>
+                Resident name
+            </th>
+            <th>
+                wing name
+            </th>
+            <th>
+                flatno
+            </th>
+            <th>
+               Vehicle number
+            </th>
+            <th>
+               vehicle type
+            </th>
+            <th>
+              Manufacturer
+            </th>
+            <th>
+                Contact
+            </th>
+            
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                    @item.Tblresident.firstname
+                    @item.Tblresident.lastname
+                  
+            </td>
+            <td>
+                    @item.Wingmodel.WingName
+            </td>
+            <td>
+                    @item.Flatmodel.flatno
+            </td>
+           
+            <td>
+                    @item.vehicleno
+            </td>
+                <td>
+                    @item.vehicletype
+                </td>
+                <td>
+                    @item.manufacturer
+                </td>
+            <td>
+                    @item.Tblresident.phoneNumber
+            </td>
+           
+            
+        </tr>
+}
+    </tbody>
+</table>

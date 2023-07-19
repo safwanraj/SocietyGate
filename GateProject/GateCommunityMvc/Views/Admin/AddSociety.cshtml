@@ -1,0 +1,86 @@
+﻿@model GateCommunityMvc.Models.SocietyRegisterView
+
+<h2>Register Society</h2>
+
+<form asp-action="AddSociety" method="post">
+    <h3>Society Details</h3>
+    <div class="form-group">
+        <label asp-for="Society_Name">Name</label>
+        <input asp-for="Society_Name" class="form-control" />
+        <span asp-validation-for="Society_Name" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Description">Descriptoon</label>
+        <input asp-for="Description" class="form-control" />
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Email">Email</label>
+        <input asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Password">Password</label>
+        <input asp-for="Password" class="form-control" />
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ConfirmPassword">Confirm Password</label>
+        <input asp-for="ConfirmPassword" class="form-control" />
+        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="President_Name">President</label>
+        <input asp-for="President_Name" class="form-control" />
+        <span asp-validation-for="President_Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Gender">Gender</label>
+        <input asp-for="Gender" class="form-control" />
+        <span asp-validation-for="Gender" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Contact">Contact</label>
+        <input asp-for="Contact" class="form-control" />
+        <span asp-validation-for="Contact" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Address">Address</label>
+        <input asp-for="Address" class="form-control" />
+        <span asp-validation-for="Address" class="text-danger"></span>
+    </div>
+   
+  
+    <div class="form-group">
+        <label asp-for="Country">Country</label>
+        <input asp-for="Country" class="form-control" />
+        <span asp-validation-for="Country" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="State">State</label>
+        <input asp-for="State" class="form-control" />
+        <span asp-validation-for="State" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="City">City</label>
+        <input asp-for="City" class="form-control" />
+        <span asp-validation-for="City" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Postal_Code">Code</label>
+        <input asp-for="Postal_Code" class="form-control" />
+        <span asp-validation-for="Postal_Code" class="text-danger"></span>
+    </div>
+
+    <hr />
+
+
+
+    <button type="submit" class="btn btn-primary">Register</button>
+</form>
+

@@ -1,0 +1,53 @@
+﻿@model GateCommunityMvc.Models.Family
+
+
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Basic form elements</h4>
+            <p class="card-description"> Basic form elements </p>
+            <form asp-action="Addfamily" class="forms-sample" method="post" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="FamilyName">Member Name</label>
+                    <input asp-for="FamilyName" class="form-control" placeholder="member Name" />
+                    <span asp-validation-for="FamilyName" class="text-danger"></span>
+
+                </div>
+                <div class="form-group">
+
+                    <label asp-for="email">Email address</label>
+                    <input asp-for="email" type="email" class="form-control" id="exampleInputEmail3" placeholder="Email">
+                </div>
+                <div class="form-group">
+
+                    <label asp-for="contact">Contact Number</label>
+                    <input asp-for="contact" class="form-control" placeholder="Contact Number">
+                </div>
+                <div class="form-group">
+
+                    <label asp-for="relationship">Relationship</label>
+                    <input asp-for="relationship" class="form-control" placeholder="Relationship">
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="gender">Gender</label>
+                    <select asp-for="gender" class="form-control">
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>File upload</label>
+                    <input type="file" name="file" />
+
+                </div>
+              
+
+                <button type="submit" class="btn btn-gradient-primary me-2">Submit</button>
+
+
+            </form>
+        </div>
+    </div>
+</div>

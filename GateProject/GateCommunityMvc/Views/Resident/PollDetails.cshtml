@@ -1,0 +1,47 @@
+﻿@*@model List<Poll>
+
+<h1>Polls</h1>
+
+@foreach (var poll in Model)
+{
+    <h3>@poll.Question</h3>
+    <form method="post" action="@Url.Action("SubmitPoll", "Resident")">
+        @foreach (var option in poll.Options)
+        {
+            <div>
+                <input type="radio" id="@option.Id" name="selectedOption" value="@option.Id" />
+                <label for="@option.Id">@option.OptionText</label>
+            </div>
+        }
+        <input type="hidden" name="pollId" value="@poll.Id" />
+        <button type="submit">Submit</button>
+    </form>
+}
+*@
+@model List<Poll>
+
+<h1>Polls</h1>
+
+@foreach (var poll in Model)
+{
+    <form asp-action="SubmitPoll" asp-controller="Resident" method="post">
+    <div class="poll-card">
+        <h3>@poll.Question</h3>
+        <div class="options">
+            @foreach (var option in poll.Options)
+            {
+                <div class="option">
+                    <input type="radio" id="@option.Id" name="selectedOption" value="@option.Id" />
+                    <label for="@option.Id">@option.OptionText</label>
+                </div>
+            }
+        </div>
+        <div class="submit-container">
+           
+            <input type="hidden" name="pollId" value="@poll.Id" />
+            <button type="submit" class="submit-button">Submit</button>
+           
+        </div>
+    </div>
+    </form>
+}

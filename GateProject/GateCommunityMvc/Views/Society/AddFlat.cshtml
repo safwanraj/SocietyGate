@@ -1,0 +1,47 @@
+﻿@model GateCommunityMvc.Models.Flatview
+
+<div class="container p-3 my-3 border">
+    <h1> @ViewBag.PageName</h1>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <hr />
+<form asp-action="AddFlat">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <h3>Flat details</h3>
+                @if (@ViewBag.IsEdit)
+                {
+                    <input type="hidden" asp-for="flatid" />
+                }
+
+    <div class="form-group">
+
+        <label asp-for="wingid">Wing:</label>
+        <select asp-for="wingid" id="wingid" asp-items="@(new SelectList(Model.wingmodels,"Value","Text"))" class="form-control">
+          @*  <option value="">-- Select Wing --</option>
+            @foreach (var category in Model.wingmodels)
+            {
+                <option value="@category.Value">@category.Text</option>
+            }*@
+        </select>
+    </div>
+    <div class="form-group">
+        <label asp-for="floorno">Floor no</label>
+        <input asp-for="floorno" class="form-control" />
+        <span asp-validation-for="floorno" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="flatno">flat  number</label>
+        <input asp-for="flatno" class="form-control" />
+        <span asp-validation-for="flatno" class="text-danger"></span>
+    </div>
+   
+    <hr />
+
+
+
+    <button type="submit" class="btn btn-primary">Register</button>
+</form>
+        </div>
+    </div>
+</div>

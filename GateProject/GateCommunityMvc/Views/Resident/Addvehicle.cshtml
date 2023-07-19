@@ -1,0 +1,40 @@
+﻿@model GateCommunityMvc.Models.Vehicle
+
+
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Basic form elements</h4>
+            <p class="card-description"> Basic form elements </p>
+            <form asp-action="Addvehicle" class="forms-sample" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="vehicleno">Vehicle No.:</label>
+                    <input asp-for="vehicleno" class="form-control" placeholder="vehicle no" />
+                    <span asp-validation-for="vehicleno" class="text-danger"></span>
+
+                </div>
+                <div class="form-group">
+                    <label asp-for="vehicletype">Vehicle Type</label>
+                    <select asp-for="vehicletype" class="form-control">
+                        <option value="Two Wheeler">Two Wheeler</option>
+                        <option value="Four Wheeler">Four Wheeler</option>
+                        <option value="Other">other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+
+                    <label asp-for="manufacturer">Manufacturer:</label>
+                    <input asp-for="manufacturer" class="form-control" placeholder="manufacturer" />
+                    <span asp-validation-for="manufacturer" class="text-danger"></span>
+                </div>
+               
+               
+
+                <button type="submit" class="btn btn-gradient-primary me-2">Submit</button>
+
+
+            </form>
+        </div>
+    </div>
+</div>

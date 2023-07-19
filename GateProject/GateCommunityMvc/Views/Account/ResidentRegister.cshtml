@@ -1,0 +1,285 @@
+﻿@model GateCommunityMvc.Models.ResidentView
+
+@{
+
+	Layout = null;
+}
+@*<!-- Start Page Title Area -->
+<div class="page-title-area page-title-style-two">
+	<div class="container">
+		<div class="page-title-content">
+			<h2>Registration</h2>
+			<ul>
+				<li>
+					<a href="~/Home/Index">
+						<i class="bx bx-home"></i>
+						Home
+					</a>
+				</li>
+				<li class="active">Registration</li>
+			</ul>
+		</div>
+	</div>
+</div>*@
+<!-- End Page Title Area -->
+<!-- Start User Area -->
+<section class="user-area-style ptb-100">
+	<div class="container">
+		<div class="contact-form-action">
+			<div class="account-title">
+				<h2>Registration</h2>
+			</div>
+
+
+			<form asp-action="ResidentRegister" asp-controller="Account" method="post" enctype="multipart/form-data">
+				<div class="row">
+
+				@*	<div class="col-12">
+
+						<div class="form-group">
+							<label for="CityId">City:</label>
+							<select id="cityId" for="CityId" class="form-control">
+								<option value="">-- Select City --</option>
+								<option value="ahmedabad">Ahmedabad </option>
+								<option value="bharuch">Bharuch </option>
+								<option value="surat">Surat </option>
+								<option value="vadodara">Vadodara </option>
+								<option value="gandhinagar">Gandhinagar </option>
+							</select>
+							<span for="CityId" class="text-danger"></span>
+						</div>
+					</div>*@
+
+					@*<div class="col-12">
+						<div class="form-group">
+							<label for="societyId">Wings:</label>
+							<select id="societyId" name="societyid" class="form-control" style="display: block;">
+								<option value="">-- Select society --</option>
+							</select>
+						</div>
+					</div>*@
+
+					<div class="col-12">
+						<div class="form-group">
+
+							<label for="societyId">Society:</label>
+							<select id="societyId" name="societyid" class="form-control" style="display:block;" >
+								<option value="">-- Select Society --</option>
+								@foreach (var category in Model.SocietyDetails)
+								{
+									<option value="@category.Value">@category.Text</option>
+								}
+							</select>
+						</div>
+					</div>
+
+					<div class="col-12">
+						<div class="form-group">
+							<label for="wingId">Wings:</label>
+							<select id="wingId" name="wingid" class="form-control" style="display: block;">
+								<option value="">-- Select wing --</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-12">
+						<div class="form-group">
+							<label for="flatId">flats:</label>
+							<select id="flatId" name="flatno" class="form-control" style="display: block;">
+								<option value="">-- Select flat --</option>
+							</select>
+						</div>
+					</div>
+
+
+					
+
+					<div class="col-12">
+						<div class="form-group">
+							<label asp-for="firstname">First Name:</label>
+							<input asp-for="firstname" class="form-control" />
+						</div>
+					</div>
+					<div class="col-12">
+						<div class="form-group">
+							<label asp-for="lastname">Last Name:</label>
+							<input asp-for="lastname" class="form-control" />
+						</div>
+					</div>
+					<div class="col-12">
+						<div class="form-group">
+							<label asp-for="email">Email:</label>
+							<input asp-for="email" class="form-control" />
+						</div>
+					</div>
+
+					<div class="col-12">
+						<div class="form-group">
+							<label asp-for="password">Password:</label>
+							<input asp-for="password" type="password" class="form-control" />
+						</div>
+					</div>
+					<div class="col-12">
+						<div class="form-group">
+							<label asp-for="ConfirmPassword">Confirm Password:</label>
+							<input asp-for="ConfirmPassword" type="password" class="form-control" />
+						</div>
+					</div>
+					<div class="col-12">
+						<div class="form-group">
+							<label asp-for="phoneNumber">Phone Number:</label>
+							<input asp-for="phoneNumber" class="form-control" />
+						</div>
+					</div>
+					<div class="col-12">
+						<div class="form-group">
+							<label asp-for="gender">Gender:</label>
+							<select asp-for="gender" class="form-control">
+								<option value="Male">Male</option>
+								<option value="Female">Female</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-12">
+						<div class="form-group">
+							<label asp-for="doc_type">Document Type:</label>
+							<select asp-for="doc_type" class="form-control">
+								<option value="Passport">Flat Papers</option>
+								<option value="ID Card">ID Card</option>
+
+							</select>
+							<input type="file" name="file" />
+						</div>
+					</div>
+
+					<div class="col-12">
+						<div class="row align-items-center">
+							<div class="col-lg-6 col-sm-6">
+								<button class="default-btn register" type="submit">
+									<span>Register now</span>
+								</button>
+							</div>
+
+
+						</div>
+					</div>
+
+					<div class="col-12">
+						<p>Have an account? <a href="~/Account/Login">Login now!</a></p>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</section>
+<!-- End User Area -->
+@*@section flat {*@
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script>
+		$(document).ready(function () {
+	
+
+			// Handle category change event
+			$('#societyId').change(function () {
+				var societyId = $(this).val();
+				 // Clear existing subcategories
+
+				if (societyId !== '') {
+					// Load subcategories via AJAX
+					$.ajax({
+						url: '@Url.Action("Loadwing", "Account")',
+						type: 'POST',
+						data: { societyId: societyId },
+
+						success: function (result) {
+						$('#wingId').empty();
+						$('#wingId').append($('<option>').text('Select wing').attr('value', ''));
+						debugger;
+
+							// Populate subcategories dropdown
+							$.each(result, function (index, wing) {
+								$('#wingId').append($('<option/>', {
+									value: wing.value,
+									text: wing.text
+								}));
+							});
+
+						},
+						error: function (result) {
+							alert("error occured");
+						}
+					});
+				}
+			});
+		$('#wingId').change(function () {
+			var wingId = $(this).val();
+			 // Clear existing subcategories
+
+			if (wingId !== '') {
+				// Load subcategories via AJAX
+				$.ajax({
+					url: '@Url.Action("Loadflat", "Account")',
+					type: 'POST',
+					data: { wingId: wingId },
+
+					success: function (result) {
+						$('#flatId').empty();
+						$('#flatId').append($('<option>').text('Select flat').attr('value', ''));
+
+						// Populate subcategories dropdown
+						$.each(result, function (index, flat) {
+							$('#flatId').append($('<option/>', {
+								value: flat.value,
+								text: flat.text
+							}));
+						});
+
+					},
+					error: function (result) {
+						alert("error occured");
+					}
+				});
+			}
+		});
+		});
+	</script>
+	
+	@*<script>
+	$(document).ready(function () {
+		// Handle category change event
+		$('#wingId').change(function () {
+			var wingId = $(this).val();
+			$('#flatId').empty(); // Clear existing subcategories
+
+			if (wingId !== '') {
+				// Load subcategories via AJAX
+				$.ajax({
+					url: '@Url.Action("Loadflat", "Account")',
+					type: 'POST',
+					data: { wingId: wingId },
+
+					success: function (result) {
+						
+
+
+						// Populate subcategories dropdown
+						$.each(result, function (index, flat) {
+							$('#flat
+							Id').append($('<option/>', {
+								value: flat.value,
+								text: flat.text
+							}));
+						});
+
+					},
+					error: function (result) {
+						alert("error occured");
+					}
+				});
+			}
+		});
+	});
+	</script>*@
+
+
+
+

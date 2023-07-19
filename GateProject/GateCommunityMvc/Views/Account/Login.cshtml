@@ -1,0 +1,79 @@
+﻿@model GateCommunityMvc.Models.LoginViewModel
+<!-- Start Page Title Area -->
+<div class="page-title-area page-title-style-two">
+	<div class="container">
+		<div class="page-title-content">
+			<h2>Log In</h2>
+			<ul>
+				<li>
+					<a href="index.html">
+						<i class="bx bx-home"></i>
+						Home
+					</a>
+				</li>
+				<li class="active">Log In</li>
+			</ul>
+		</div>
+	</div>
+</div>
+<!-- End Page Title Area -->
+<!-- Start User Area -->
+<section class="user-area-style ptb-100">
+	<div class="container">
+		<div class="contact-form-action">
+			<div class="account-title">
+				<h2>Log in</h2>
+			</div>
+
+			<form asp-action="Login" method="post">
+				<div class="row">
+					<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+					<div class="col-12">
+
+						<div class="form-group">
+							@*<label>Email or Phone</label>
+							<input class="form-control" type="text" name="name">*@
+							
+								<label asp-for="Email">Email</label>
+								<input asp-for="Email" class="form-control" />
+								<span asp-validation-for="Email" class="text-danger"></span>
+							
+						</div>
+					</div>
+
+					<div class="col-12">
+						<div class="form-group">
+							<label asp-for="Password">Password</label>
+							<input asp-for="Password" class="form-control" />
+							<span asp-validation-for="Password" class="text-danger"></span>
+						</div>
+					</div>
+
+					@*<div class="col-12">
+						<div class="login-action">
+							<span class="log-rem">
+								<input id="remember" type="checkbox">
+								<label for="remember">Remember me!</label>
+							</span>
+
+							<span class="forgot-login">
+								<a href="recover-password.html">Forgot your password?</a>
+							</span>
+						</div>
+					</div>*@
+
+					<div class="col-12">
+						<button class="default-btn" type="submit">
+							<span>Log in now</span>
+						</button>
+					</div>
+
+					@*<div class="col-12">
+						<p>Have an account? <a href="registration.html">Registration Now!</a></p>
+					</div>*@
+				</div>
+			</form>
+		</div>
+	</div>
+</section>
+<!-- End User Area -->

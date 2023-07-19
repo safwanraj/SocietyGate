@@ -1,0 +1,69 @@
+﻿@model List<PollViewModel>
+
+<h1>Poll List</h1>
+<p>
+    <a asp-action="CreatePoll">Create New</a>
+</p>
+@if (Model.Count == 0)
+{
+    <p>No polls available.</p>
+}
+else
+{
+    <div class="poll-list">
+        @foreach (var poll in Model)
+        {
+            <div class="poll-item">
+                <h3 class="poll-question">@poll.Question</h3>
+                <ul class="poll-options">
+                    @foreach (var option in poll.Options)
+                    {
+                        <li>@option.OptionText</li>
+                    }
+                </ul>
+            </div>
+        }
+    </div>
+}
+
+
+
+@*@model List<PollViewModel>
+
+<h1>Poll List</h1>
+<p>
+    <a asp-action="CreatePoll">Create New</a>
+</p>
+
+@if (Model.Count == 0)
+{
+    <p>No polls available.</p>
+}
+else
+{
+    <table>
+        <thead>
+            <tr>
+                <th>Question</th>
+                <th>Options</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var poll in Model)
+            {
+                <tr>
+                    <td>@poll.Question</td>
+                    <td>
+                        <ul>
+                            @foreach (var option in poll.Options)
+                            {
+                                <li>@option.OptionText</li>
+                            }
+                        </ul>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+*@

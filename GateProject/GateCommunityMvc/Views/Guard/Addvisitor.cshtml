@@ -1,0 +1,155 @@
+﻿@model GateCommunityMvc.Models.Visitorview
+
+
+
+<!-- Your other HTML content -->
+
+<form asp-action="Addvisitor" asp-controller="Guard" method="post" enctype="multipart/form-data">
+
+    <!-- Your other HTML content -->
+   
+   @* <div class="form-group">
+        <label asp-for="residentid">Select resident</label>
+        <select asp-for="residentid" class="form-control"  >
+            <option>--select resident--</option>
+            @foreach (var res in (SelectList)ViewData["ResidentId"])
+            {
+                <option value="@res.Value">@res.Text</option>
+            }
+        </select>
+    </div>*@
+    <div class="form-group">
+        <label asp-for="wingid">Select wing</label>
+        <select asp-for="wingid" class="form-control">
+            <option value="">--select wing--</option>
+            @foreach (var win in (SelectList)ViewData["Wing"])
+            {
+                <option value="@win.Value">@win.Text</option>
+            }
+        </select>
+    </div>
+    <div class="col-12">
+        <div class="form-group">
+            <label for="residentid">Resident:</label>
+            <select id="residentid" name="residentid" class="form-control">
+                <option value="">-- Select resident --</option>
+            </select>
+        </div>
+    </div>
+    
+
+
+    <div class="form-group">
+        <label asp-for="visitorName">Visitor Name</label>
+        <input asp-for="visitorName" class="form-control" />
+        <span asp-validation-for="visitorName" class="text-danger"></span>
+    </div>
+    
+    <div class="form-group">
+        <label asp-for="visitorType">Visitor Type</label>
+        <input asp-for="visitorType" class="form-control" />
+        <span asp-validation-for="visitorType" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="gender">Gender</label>
+        <select asp-for="gender" class="form-control">
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+        </select>
+        <span asp-validation-for="gender" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="workas">Work As</label>
+        <input asp-for="workas" class="form-control" />
+        <span asp-validation-for="workas" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="visitorcontact">Visitor Contact</label>
+        <input asp-for="visitorcontact" class="form-control" />
+        <span asp-validation-for="visitorcontact" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="purposeofvisit">Purpose</label>
+        <input asp-for="purposeofvisit" class="form-control" />
+        <span asp-validation-for="purposeofvisit" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="aadharno">Aadhar Number:</label>
+        <input asp-for="aadharno" class="form-control" />
+        <span asp-validation-for="aadharno" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="from">From</label>
+        <input asp-for="from" class="form-control" />
+        <span asp-validation-for="from" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="vehicleno">Vehicle Number</label>
+        <input asp-for="vehicleno" class="form-control" />
+        <span asp-validation-for="vehicleno" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="profilepath">Visitor photo</label>
+        <input type="file" name="profilepath" id="profilepath" />
+        <span asp-validation-for="profilepath" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="doc_type">Document type</label>
+        <select asp-for="doc_type" class="form-control">
+            <option value="aadhar card">Aadhar card</option>
+            <option value="driving licence">Driving license</option>
+            <option value="other">other</option>
+        </select>
+        <input type="file" name="doc" id="doc" />
+        <span asp-validation-for="doc_type" class="text-danger"></span>
+    </div>
+    
+    <!-- Repeat the above pattern for other properties -->
+    
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+@section addvisitor{
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+
+
+            // Handle category change event
+            $('#wingid').change(function () {
+                var wingId = $(this).val();
+                // Clear existing subcategories
+
+                if (wingId !== '') {
+                    // Load subcategories via AJAX
+                    $.ajax({
+                        url: '@Url.Action("Loadres", "Guard")',
+                        type: 'POST',
+                        data: { wingId: wingId },
+
+                        success: function (result) {
+                            $('#residentid').empty();
+                            $('#residentid').append($('<option>').text('Select resident').attr('value', ''));
+                            debugger;
+
+                            // Populate subcategories dropdown
+                            $.each(result, function (index, res) {
+                               
+                                $('#residentid').append($('<option/>', {
+                                    value: res.value,
+                                    text: res.text
+                                }));
+                            });
+
+                        },
+                        error: function (result) {
+                            alert("error occured");
+                        }
+                    });
+                }
+            });
+            
+        });
+    </script>
+     
+}

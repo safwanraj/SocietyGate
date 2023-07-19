@@ -1,0 +1,41 @@
+﻿@*@model Poll
+
+<h1>Poll Results</h1>
+
+<h3>@Model.Question</h3>
+
+@foreach (var option in Model.Options)
+{
+    <div class="result">
+        <div class="option-text">@option.OptionText</div>
+        <div class="vote-count">@option.VotesCount</div>
+        <div class="vote-percentage">
+            @(ViewBag.TotalVotes > 0 ? (option.VotesCount / (double)ViewBag.TotalVotes) * 100 : 0)%
+        </div>
+    </div>
+}
+*@
+@model Poll
+
+<div class="poll-result">
+    <h2 class="poll-question">@Model.Question</h2>
+
+    @foreach (var option in Model.Options)
+    {
+        <div class="poll-option">
+            <div class="option-text">@option.OptionText</div>
+            <div class="vote-progress-bar">
+                <div class="vote-progress" style="width: @(CalculatePercentage(option.VotesCount, ViewBag.TotalVotes))%"></div>
+            </div>
+            <div class="vote-count">@option.VotesCount</div>
+            <div class="vote-percentage">@CalculatePercentage(option.VotesCount, ViewBag.TotalVotes)%</div>
+        </div>
+    }
+</div>
+
+@functions {
+    private double CalculatePercentage(int votesCount, int totalVotes)
+    {
+        return totalVotes > 0 ? (votesCount / (double)totalVotes) * 100 : 0;
+    }
+}

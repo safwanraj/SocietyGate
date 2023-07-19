@@ -1,0 +1,54 @@
+﻿@model GateCommunityMvc.Models.GuardRegister
+
+@{
+    ViewData["Title"] = "Create Guard";
+}
+
+<h1>Create Guard</h1>
+
+<form  asp-action="AddSecurity_Guard" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label asp-for="Guard_FullName">Full Name:</label>
+        <input asp-for="Guard_FullName" class="form-control" required>
+        <span asp-validation-for="Guard_FullName" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Guard_Email">Email:</label>
+        <input asp-for="Guard_Email" class="form-control" required>
+        <span asp-validation-for="Guard_Email" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Guard_Contact">Contact Number:</label>
+        <input asp-for="Guard_Contact" class="form-control" required>
+        <span asp-validation-for="Guard_Contact" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="alternate_contact">Alternate Contact Number:</label>
+        <input asp-for="alternate_contact" class="form-control">
+        <span asp-validation-for="alternate_contact" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Guard_Gender">Gender:</label>
+        <input asp-for="Guard_Gender" class="form-control" required>
+        <span asp-validation-for="Guard_Gender" class="text-danger"></span>
+    </div>
+   
+    <div class="form-group">
+        <label asp-for="Job_position">Job Position:</label>
+        <input asp-for="Job_position" class="form-control" required>
+        <span asp-validation-for="Job_position" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="doc_type">doc type:</label>
+        <input asp-for="doc_type" class="form-control" required>
+        <span asp-validation-for="doc_type" class="text-danger"></span>
+        <input type="file" name="file" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Guard_Password">Password:</label>
+        <input asp-for="Guard_Password" class="form-control" required>
+        <span asp-validation-for="Guard_Password" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>

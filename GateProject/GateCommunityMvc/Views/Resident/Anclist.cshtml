@@ -1,0 +1,33 @@
+﻿@model IEnumerable<GateCommunityMvc.Models.Announcement>
+
+@{
+    ViewData["Title"] = "Announcements";
+    Layout = "~/Views/Resident/_Layout.cshtml";
+}
+
+
+<div class="container">
+    <h2 class="section-title">Announcements</h2>
+    <hr class="divider">
+
+    @if (Model.Any())
+    {
+        <div class="announcement-list">
+            @foreach (var announcement in Model)
+            {
+                <div class="announcement-item">
+                    <h3 class="announcement-title">@announcement.Title</h3>
+                    <p class="announcement-content">@announcement.Content</p>
+                    <div class="announcement-meta">
+                        <span class="posted-by">Posted By: President</span>
+                        <span class="posted-date">Posted Date: @announcement.PostedDate.ToString("MM/dd/yyyy")</span>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <p class="no-announcements">No announcements available at the moment.</p>
+    }
+</div>

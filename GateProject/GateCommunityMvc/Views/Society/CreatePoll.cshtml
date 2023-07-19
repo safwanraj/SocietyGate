@@ -1,0 +1,135 @@
+﻿@model GateCommunityMvc.Models.PollViewModel
+
+<h2>Create Poll</h2>
+
+<form asp-action="CreatePoll">
+    <div class="form-group">
+        <label asp-for="Question">Question</label>
+        <input asp-for="Question" class="form-control" />
+        <span asp-validation-for="Question" class="text-danger"></span>
+    </div>
+   @* <div class="form-group">
+        <label for="options">Options</label>
+
+        <!-- Use a for loop to iterate over the options -->
+        @for (int i = 0; i < Model.Options.Count; i++)
+        {
+            <div class="option">
+                <input type="text" asp-for="Options[i].OptionText" class="form-control" placeholder="Option" />
+                <button type="button" class="btn btn-danger remove-option">Remove</button>
+            </div>
+        }
+
+        <button type="button" id="add-option" class="btn btn-primary">Add Option</button>
+    </div>*@
+
+    <div class="form-group">
+        <label for="options">Options</label>
+
+        <div id="options-container">
+            <!-- Existing options rendered on page load -->
+            @for (int i = 0; i < Model.Options.Count; i++)
+            {
+                <div class="option">
+                    <input type="text" name="Options[@i].Text" value="@Model.Options[i].OptionText" class="form-control" placeholder="Option" />
+                    <button type="button" class="btn btn-danger remove-option">Remove</button>
+                </div>
+            }
+        </div>
+
+        <button type="button" id="add-option" class="btn btn-primary">Add Option</button>
+    </div>
+    @*<div class="form-group">
+        <label asp-for="Options">Options:</label>
+        <input type="text" id="OptionTexts" name="Options" class="form-control" />
+        <small class="text-muted">Enter each option on a new line</small>
+    </div>
+    <div class="form-group">
+        <label asp-for="Options"></label>
+        <div id="optionFields"></div>
+        <button type="button" id="addOptionButton" class="btn btn-primary">Add Option</button>
+    </div>*@
+
+    <div class="form-group">
+        <label asp-for="StartDate">Start Date</label>
+        <input asp-for="StartDate" class="form-control datepicker" />
+        <span asp-validation-for="StartDate" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="EndDate">End Date</label>
+        <input asp-for="EndDate" class="form-control datepicker" />
+        <span asp-validation-for="EndDate" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Create</button>
+</form>
+@section addpoll {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            var optionsContainer = $('#options-container');
+            var addButton = $('#add-option');
+
+            addButton.click(function () {
+                var optionIndex = optionsContainer.children('.option').length;
+
+                var optionHtml = `
+                            <div class="option">
+                                        <input type="text" name="Options[${optionIndex}].OptionText" class="form-control" placeholder="Option" />
+                                <button type="button" class="btn btn-danger remove-option">Remove</button>
+                            </div>
+                        `;
+
+                optionsContainer.append(optionHtml);
+            });
+
+            optionsContainer.on('click', '.remove-option', function () {
+                $(this).closest('.option').remove();
+            });
+        });
+        // JavaScript code for dynamically adding and removing options
+        //$(document).ready(function () {
+        //    var optionsContainer = $('.form-group');
+        //    var addButton = $('#add-option');
+
+        //    addButton.click(function () {
+        //        var optionIndex = $('.option').length;
+
+        //        var optionHtml = `
+        //                    <div class="option">
+        //                                <input type="text" name="Options[${optionIndex}].OptionText" class="form-control" placeholder="Option" />
+        //                        <button type="button" class="btn btn-danger remove-option">Remove</button>
+        //                    </div>
+        //                `;
+
+        //        optionsContainer.append(optionHtml);
+        //    });
+
+        //    optionsContainer.on('click', '.remove-option', function () {
+        //        $(this).closest('.option').remove();
+        //    });
+        //});
+    </script>
+
+    @*<script>
+        $(document).ready(function () {
+            var optionFieldIndex = 0;
+
+            $("#addOptionButton").on("click", function () {
+                var optionField = '<div class="input-group mb-3">' +
+                    '<input asp-for="Options[' + optionFieldIndex + '].Text" class="form-control" />' +
+                    '<div class="input-group-append">' +
+                    '<button class="btn btn-danger remove-option" type="button">Remove</button>' +
+                    '</div>' +
+                    '</div>';
+
+                $("#optionFields").append(optionField);
+                optionFieldIndex++;
+            });
+
+            $(document).on("click", ".remove-option", function () {
+                $(this).closest(".input-group").remove();
+            });
+        });
+    </script>*@
+}

@@ -1,0 +1,121 @@
+﻿@model GateCommunityMvc.Models.Searchview
+@if (Model.Families.Any() || Model.Staffs.Any())
+{
+    @if (Model.Families.Any())
+    {
+        <table id="familylist" class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>
+                        Family member name
+                    </th>
+                    <th>
+                        Resident Name
+                    </th>
+                    <th>
+                        Relationship
+                    </th>
+                    <th>
+                        Profile
+                    </th>
+                    <th>
+                        Gender
+                    </th>
+                    <th>
+                        Action
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Display Table1 results -->
+                @foreach (var result in Model.Families)
+                {
+                    <tr>
+                        <td>@result.FamilyName</td>
+                        <td>
+                            @result.Tblresident.firstname
+                            @result.Tblresident.lastname
+                        </td>
+                        <td>
+                            @result.relationship
+                        </td>
+                        <td>
+                            <img src="~/@result.filepath" width="50" height="50" alt="Profile Image" />
+                        </td>
+                        <td>
+                            @result.gender
+                        </td>
+                        <td>
+                            <form asp-controller="Guard" asp-action="HandleExit" method="post">
+                                <input type="hidden" name="id" value="@result.FamilyId" />
+                                <button type="submit" name="action" value="Family">Entry</button>
+
+                            </form>
+                           
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+
+
+    @if (Model.Staffs.Any())
+    {
+        <table id="searchlist" class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>
+                        Staff name
+                    </th>
+                    <th>
+                        Resident Name
+                    </th>
+                    <th>
+                        Work as
+                    </th>
+                    <th>
+                        Profile
+                    </th>
+                    <th>
+                        Gender
+                    </th>
+                    <th>
+                        Action
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Display Table1 results -->
+                @foreach (var result in Model.Staffs)
+                {
+                    <tr>
+                        <td>@result.staffName</td>
+                        <td>
+                            @result.Tblresident.firstname
+                            @result.Tblresident.lastname
+                        </td>
+                        <td>
+                            @result.workas
+                        </td>
+                        <td>
+                            <img src="~/@result.filepath" width="50" height="50" alt="Profile Image" />
+                        </td>
+                        <td>
+                            @result.gender
+                        </td>
+                        <td>
+                            <form asp-controller="Guard" asp-action="Handlestaff" method="post">
+                                <input type="hidden" name="id" value="@result.staffId" />
+                                <button type="submit" name="action" value="Staff">Exit</button>
+
+                            </form>
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+}

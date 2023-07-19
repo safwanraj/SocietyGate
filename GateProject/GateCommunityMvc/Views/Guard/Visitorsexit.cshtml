@@ -1,0 +1,61 @@
+﻿@model IEnumerable<GateCommunityMvc.Models.Entryexit>
+
+@{
+    ViewData["Title"] = "Visitorsexit";
+    Layout = "~/Views/Guard/_Layout.cshtml";
+}
+
+<h1>Visitorsexit</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+               Resident name
+            </th>
+            <th>
+              visitor name
+            </th>
+            <th>
+               visitor contact
+            </th>
+            <th>
+                entry
+            </th>
+            
+            <th>
+                Action
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+              @item.Tblresident.firstname
+              @item.Tblresident.lastname
+            </td>
+            <td>
+             @item.Visitors.visitorName
+            </td>
+           <td>
+               @item.Visitors.visitorcontact
+           </td>
+            <td>
+               @item.Entry
+            </td>
+           
+            <td>
+                    <form asp-controller="Guard" asp-action="HandleRequest" method="post">
+                        <input type="hidden" name="id" value="@item.eid" />
+                        <button type="submit" name="action" value="Update">Update exit</button>
+                       
+                    </form>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
